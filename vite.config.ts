@@ -4,6 +4,7 @@ import babel from '@rolldown/plugin-babel'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/micro-loan-library/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
