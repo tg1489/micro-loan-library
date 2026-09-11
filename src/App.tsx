@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { libraries } from './data/libraries'
 
-function LibraryCard({ name, city, neighborhood, membership, tools, description, website }: {
+function LibraryCard({ name, city, neighborhood, membership, tools, description, website, image }: {
   name: string
   city: string
   neighborhood: string
@@ -9,18 +9,22 @@ function LibraryCard({ name, city, neighborhood, membership, tools, description,
   tools: string[]
   description: string
   website: string
+  image: string
 }) {
   return (
     <article className="card">
-      <h2 className="card-title">{name}</h2>
-      <p className="card-meta">{neighborhood} · {city}</p>
-      <p className="card-desc">{description}</p>
-      <div className="card-tags">
-        {tools.map(t => <span key={t} className="tag">{t}</span>)}
-      </div>
-      <div className="card-footer">
-        <span className="membership">{membership}</span>
-        <a className="link" href={website} target="_blank" rel="noopener">Visit site</a>
+      <img className="card-image" src={image} alt={`${name} photo`} loading="lazy" />
+      <div className="card-body">
+        <h2 className="card-title">{name}</h2>
+        <p className="card-meta">{neighborhood} · {city}</p>
+        <p className="card-desc">{description}</p>
+        <div className="card-tags">
+          {tools.map(t => <span key={t} className="tag">{t}</span>)}
+        </div>
+        <div className="card-footer">
+          <span className="membership">{membership}</span>
+          <a className="link" href={website} target="_blank" rel="noopener">Visit site</a>
+        </div>
       </div>
     </article>
   )

@@ -7,6 +7,7 @@ export type Library = {
   tools: string[]
   description: string
   website: string
+  image: string
 }
 
 export const libraries: Library[] = [
@@ -18,7 +19,8 @@ export const libraries: Library[] = [
     membership: '$60/yr or $10 donation',
     tools: ['Drills', 'Saws', 'Ladders', 'Gardening'],
     description: 'Community-run tool library with 3,000+ tools. Members borrow for 2 weeks.',
-    website: 'https://example.com/portland'
+    website: 'https://example.com/portland',
+    image: 'https://picsum.photos/seed/portland/800/480'
   },
   {
     id: 'boulder-share-space',
@@ -28,7 +30,8 @@ export const libraries: Library[] = [
     membership: '$45/yr',
     tools: ['Power Tools', 'Camping Gear', 'Bike Repair'],
     description: 'Share-space and tool co-op for residents and makers.',
-    website: 'https://example.com/boulder'
+    website: 'https://example.com/boulder',
+    image: 'https://picsum.photos/seed/boulder/800/480'
   },
   {
     id: 'seattle-tool-coop',
@@ -38,7 +41,8 @@ export const libraries: Library[] = [
     membership: 'Sliding scale $30-80/yr',
     tools: ['Woodworking', 'Saws', 'Paint Sprayers'],
     description: 'Co-op owned, volunteer-run. Workshops included with membership.',
-    website: 'https://example.com/seattle'
+    website: 'https://example.com/seattle',
+    image: 'https://picsum.photos/seed/seattle/800/480'
   },
   {
     id: 'austin-maker-library',
@@ -48,7 +52,8 @@ export const libraries: Library[] = [
     membership: '$50/yr',
     tools: ['3D Printers', 'Drills', 'Garden Tools'],
     description: 'Neighborhood tool library and maker space.',
-    website: 'https://example.com/austin'
+    website: 'https://example.com/austin',
+    image: 'https://picsum.photos/seed/austin/800/480'
   },
   {
     id: 'chicago-tool-library',
@@ -58,6 +63,7 @@ export const libraries: Library[] = [
     membership: '$55/yr or donation',
     tools: ['Hand Tools', 'Power Tools', 'Ladders'],
     description: 'Borrow tools for home repair and community projects.',
-    website: 'https://example.com/chicago'
+    website: 'https://example.com/chicago',
+    image: 'https://picsum.photos/seed/chicago/800/480'
   }
 ]
