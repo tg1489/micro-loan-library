@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { libraries } from './data/libraries'
 
 function LibraryCard({ name, city, neighborhood, membership, tools, description, website, image }: {
@@ -32,6 +32,35 @@ function LibraryCard({ name, city, neighborhood, membership, tools, description,
 
 export default function App() {
   const [query, setQuery] = useState('')
+  const startY = useRef(0)
+  const pulling = useRef(false)
+
+  useEffect(() => {
+    const onTouchStart = (e: TouchEvent) => {
+      if (window.scrollY === 0) {
+        startY.current = e.touches[0].clientY
+        pulling.current = true
+      }
+    }
+    const onTouchMove = (e: TouchEvent) => {
+      if (!pulling.current) return
+      const dy = e.touches[0].clientY - startY.current
+      if (dy > 80) {
+        if ('vibrate' in navigator) navigator.vibrate(10)
+        pulling.current = false
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+    const onTouchEnd = () => { pulling.current = false }
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+    window.addEventListener('touchend', onTouchEnd)
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()

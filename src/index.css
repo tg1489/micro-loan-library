@@ -34,7 +34,7 @@ body {
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.25rem 5rem;
+  padding: 2.5rem 1rem 5rem;
 }
 
 .header {
@@ -217,4 +217,20 @@ h1 {
   color: #64748b;
   font-size: 0.85rem;
   margin-top: 4rem;
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 1.5rem 0.75rem 4rem;
+  }
+  .card-image {
+    height: 160px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+  }
 }
