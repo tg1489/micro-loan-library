@@ -219,6 +219,22 @@ h1 {
   margin-top: 4rem;
 }
 
+.pull-indicator {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(56,189,248,0.15);
+  border: 1px solid rgba(56,189,248,0.4);
+  color: #cbd5e1;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  pointer-events: none;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
 @media (max-width: 640px) {
   .app {
     padding: 1.5rem 0.75rem 4rem;

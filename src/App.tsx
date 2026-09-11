@@ -32,6 +32,7 @@ function LibraryCard({ name, city, neighborhood, membership, tools, description,
 
 export default function App() {
   const [query, setQuery] = useState('')
+  const [pullProgress, setPullProgress] = useState(0)
   const startY = useRef(0)
   const pulling = useRef(false)
 
@@ -40,18 +41,25 @@ export default function App() {
       if (window.scrollY === 0) {
         startY.current = e.touches[0].clientY
         pulling.current = true
+        setPullProgress(0)
+        if ('vibrate' in navigator) navigator.vibrate(5)
       }
     }
     const onTouchMove = (e: TouchEvent) => {
       if (!pulling.current) return
-      const dy = e.touches[0].clientY - startY.current
+      const dy = Math.max(0, e.touches[0].clientY - startY.current)
+      setPullProgress(Math.min(1, dy / 120))
       if (dy > 80) {
-        if ('vibrate' in navigator) navigator.vibrate(10)
+        if ('vibrate' in navigator) navigator.vibrate([10, 20, 10])
         pulling.current = false
+        setPullProgress(0)
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }
-    const onTouchEnd = () => { pulling.current = false }
+    const onTouchEnd = () => {
+      pulling.current = false
+      setPullProgress(0)
+    }
     window.addEventListener('touchstart', onTouchStart, { passive: true })
     window.addEventListener('touchmove', onTouchMove, { passive: true })
     window.addEventListener('touchend', onTouchEnd)
@@ -75,6 +83,11 @@ export default function App() {
 
   return (
     <main className="app">
+      {pullProgress > 0 && (
+        <div className="pull-indicator" style={{ opacity: pullProgress, transform: `translateY(${pullProgress * 20}px)` }}>
+          <span>↓ Pull to refresh</span>
+        </div>
+      )}
       <header className="header">
         <h1>Micro-Loan Tool-Library Directory</h1>
         <p className="subtitle">Your go-to map of neighborhood tool-libraries, share-spaces, and “tool-co-ops” where residents borrow drills, saws, gardening gear for a small membership or donation. 🛠️📚🤝</p>
